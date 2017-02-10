@@ -1,0 +1,10 @@
+[
+    {
+        "modid": "props",
+        "name": "Props Plugin",
+        "version": "0.1",
+        "requiredMods": [
+            "spongeapi@5.0.0"
+        ]
+    }
+]
