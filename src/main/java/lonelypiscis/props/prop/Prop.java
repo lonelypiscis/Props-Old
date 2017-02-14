@@ -34,7 +34,7 @@ public class Prop implements IStorable {
 
 	@Override
 	public void saveToJson(JsonObject jsonObject) {
-		jsonObject.add("model_data", jsonObject);
+		jsonObject.add("model_data", getModelData().getSavedInstance());
 		jsonObject.addProperty("prop_id", propId);
 		jsonObject.addProperty("prop_name", propName);
 	}

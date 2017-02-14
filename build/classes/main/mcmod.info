@@ -4,7 +4,7 @@
         "name": "Props Plugin",
         "version": "0.1",
         "requiredMods": [
-            "spongeapi@5.0.0"
+            "spongeapi@5.1.0-SNAPSHOT"
         ]
     }
 ]

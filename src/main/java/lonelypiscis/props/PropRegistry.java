@@ -16,6 +16,12 @@ public class PropRegistry implements IStorable {
 		propRegister = new HashMap<>();
 	}
 	
+	/* Returns a prop instance by its id. */
+	
+	public Prop getPropById(String id) {
+		return propRegister.get(id);
+	}
+	
 	/* Registers a Prop in the storage list. A prop cannot be registered multiple times.*/
 	
 	public Prop registerProp(Prop prop) {
