@@ -1,7 +1,7 @@
 *.class
 *.bin
 
-/build/
+build/
 
 # Log file
 *.log
