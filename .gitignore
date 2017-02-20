@@ -1,4 +1,7 @@
 *.class
+*.bin
+
+/build/
 
 # Log file
 *.log
