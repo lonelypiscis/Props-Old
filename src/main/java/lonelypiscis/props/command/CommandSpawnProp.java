@@ -26,12 +26,14 @@ public class CommandSpawnProp implements CommandCallable {
 	public CommandResult process(CommandSource source, String arguments) throws CommandException {
 		CommandResult result = CommandResult.success();
 		
-		if (source instanceof Player) {
+		/*if (source instanceof Player) {
 			Player player = (Player) source;
 			
 			Location<World> loc = player.getLocation();
 			Props.getProps().getPropEntityManager().spawnPropEntity(loc);
-		}
+		}*/
+		
+		Props.getProps().getPropDiscoverer().discover();
 		
 		return result;
 	}

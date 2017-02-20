@@ -1,4 +1,4 @@
-package lonelypiscis.props.prop;
+package lonelypiscis.props.entity;
 
 import java.util.HashMap;
 import java.util.Optional;
