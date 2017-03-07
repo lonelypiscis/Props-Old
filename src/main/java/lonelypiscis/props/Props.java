@@ -2,6 +2,7 @@ package lonelypiscis.props;
 
 import lonelypiscis.props.discover.PropDiscoverer;
 import lonelypiscis.props.entity.PropEntityManager;
+import lonelypiscis.props.resource.ResourcePackFactory;
 import lonelypiscis.props.storage.StorageManager;
 
 public class Props {
@@ -11,12 +12,14 @@ public class Props {
 	private StorageManager storageManager;
 	private PropEntityManager propEntityManager;
 	private PropDiscoverer propDiscoverer;
+	private ResourcePackFactory resourcePackFactory;
 	
 	public Props() {
 		propRegistry = new PropRegistry();
 		storageManager = new StorageManager();
 		propEntityManager = new PropEntityManager();
 		propDiscoverer = new PropDiscoverer();
+		resourcePackFactory = new ResourcePackFactory();
 	}
 	
 	public void loadData() {
@@ -41,6 +44,10 @@ public class Props {
 	
 	public PropDiscoverer getPropDiscoverer() {
 		return propDiscoverer;
+	}
+	
+	public ResourcePackFactory getResourcePackFactory() {
+		return resourcePackFactory;
 	}
 	
 	public static void instatiate() {
