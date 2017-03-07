@@ -8,10 +8,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import lonelypiscis.props.prop.Prop;
-import lonelypiscis.props.storage.IStorable;
+import lonelypiscis.props.storage.IJsonStorable;
 import lonelypiscis.props.utils.Debug;
 
-public class PropRegistry implements IStorable {
+public class PropRegistry implements IJsonStorable {
 	
 	/* Stores Props in form of 'prop_id -> Prop' */
 	private HashMap<String, Prop> propRegister;
