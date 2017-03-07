@@ -18,9 +18,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
-import lonelypiscis.props.storage.IStorable;
+import lonelypiscis.props.storage.IJsonStorable;
 
-public class PropEntityManager implements IStorable {
+public class PropEntityManager implements IJsonStorable {
 	
 	private HashMap<UUID, PropEntity> managedEntities; 
 	
