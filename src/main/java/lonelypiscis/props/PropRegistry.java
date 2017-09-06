@@ -8,13 +8,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import lonelypiscis.props.prop.Prop;
+import lonelypiscis.props.prop.StructProp;
 import lonelypiscis.props.storage.IJsonStorable;
 import lonelypiscis.props.utils.Debug;
 
 public class PropRegistry implements IJsonStorable {
 	
 	/* Stores Props in form of 'prop_id -> Prop' */
-	private HashMap<String, Prop> propRegister;
+	private HashMap<String, StructProp> propRegister;
 	
 	/* Stores the ids of Props, that have been registered by the plugin */
 	private ArrayList<String> propsDefault;
@@ -31,37 +32,43 @@ public class PropRegistry implements IJsonStorable {
 	
 	/* Returns a prop instance by its id. */
 	
-	public Prop getPropById(String id) {
+	public StructProp getPropById(String id) {
 		return propRegister.get(id);
 	}
 	
-	private Prop registerProp(Prop prop) {
-		if (propRegister.containsKey(prop.getId())) {
-			Debug.getLogger().warn("The Prop " + prop.getName() + " [id='" + prop.getId() + "'] has already been registered. Props can not be registered multiple times.");
-			Debug.getLogger().debug("Returned prop " + prop.getName() + " unmodified and just as given in arguments.");
+	public void clear() {
+		propRegister.clear();
+		propsDefault.clear();
+		propsDiscovered.clear();
+	}
+	
+	private StructProp registerProp(StructProp prop) {
+		if (propRegister.containsKey(prop.prop_id)) {
+			Debug.getLogger().warn("The Prop " + prop.prop_name + " [id='" + prop.prop_id + "'] has already been registered. Props can not be registered multiple times.");
+			Debug.getLogger().debug("Returned prop " + prop.prop_name + " unmodified and just as given in arguments.");
 			
 			return prop;
 		}
 		
-		propRegister.put(prop.getId(), prop);
+		propRegister.put(prop.prop_id, prop);
 		
 		return prop;
 	}
 	
 	/* Registers a Prop in the storage list, marking it as default. A prop cannot be registered multiple times.*/
 	
-	public Prop registerDefaultProp(Prop prop) {
+	public StructProp registerDefaultProp(StructProp prop) {
 		registerProp(prop);
-		propsDefault.add(prop.getId());
+		propsDefault.add(prop.prop_id);
 		
 		return prop;
 	}
 	
 	/* Registers a Prop in the storage list, marking it as default and overwriting any existing registrations in case beeing instructed. */
 	
-	public Prop registerDefaultProp(Prop prop, boolean overwrite) {
+	public StructProp registerDefaultProp(StructProp prop, boolean overwrite) {
 		if (overwrite) {
-			propRegister.put(prop.getId(), prop);
+			propRegister.put(prop.prop_id, prop);
 		} else {
 			return registerDefaultProp(prop);
 		}
@@ -71,11 +78,11 @@ public class PropRegistry implements IJsonStorable {
 	
 	/* Registers a Prop in the storage list, marking it as discovered and overwriting any existing registrations in case beeing instructed.*/
 	
-	public Prop registerDiscoveredProp(Prop prop, boolean overwrite) {
+	public StructProp registerDiscoveredProp(StructProp prop, boolean overwrite) {
 		if (overwrite) {
-			propRegister.put(prop.getId(), prop);
+			propRegister.put(prop.prop_id, prop);
 		} else {
-			propsDiscovered.add(prop.getId());
+			propsDiscovered.add(prop.prop_id);
 			return registerProp(prop);
 		}
 		
@@ -102,6 +109,10 @@ public class PropRegistry implements IJsonStorable {
 	@Override
 	public void loadFromJson(JsonObject jsonObject) {
 		
+	}
+	
+	public int count() {
+		return propRegister.size();
 	}
 
 }
